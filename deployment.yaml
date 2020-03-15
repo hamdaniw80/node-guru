@@ -32,5 +32,5 @@ spec:
       - image: 192.168.56.101:5000/node-guru:latest
         name: node-guru
         ports:
-        - containerPort: 3306
-          name: mysql-transkrip
+        - containerPort: 3000
+          name: node-guru
