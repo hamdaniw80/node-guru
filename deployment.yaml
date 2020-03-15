@@ -16,7 +16,6 @@ kind: Deployment
 metadata:
   name: node-guru
 spec:
-  imagePullPolicy: Always
   replicas: 1
   selector:
     matchLabels:
