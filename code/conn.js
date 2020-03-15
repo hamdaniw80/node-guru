@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "mysql-transkrip.default.svc.cluster.local",
-  port: "30006",
+  port: "3306",
   user: "whamdani",
   password: "P@ssw0rd",
   database: "transkrip_nilai"
