@@ -21,7 +21,7 @@ spec:
     matchLabels:
       app: node-guru
   strategy:
-    type: Rolling
+    type: RollingUpdate
   template:
     metadata:
       labels:
