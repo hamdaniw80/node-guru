@@ -19,17 +19,17 @@ pipeline {
     }
 	stage ("Build Image") {
       steps {
-        sh "docker build -t ${registry}/${serviceName}:${env.BUILD_ID} -f Dockerfile_new ."
+        sh "docker build -t ${registry}/${serviceName}:latest -f Dockerfile_new ."
       }
     }
 	stage ("Push Image") {
       steps {
-        sh "docker push ${registry}/${serviceName}:${env.BUILD_ID}"
+        sh "docker push ${registry}/${serviceName}:latest"
       }
     }
-    stage ("Remove Image") {
+    stage ("Deploy to kubernetes") {
       steps {
-        sh "docker rmi ${registry}/${serviceName}:${env.BUILD_ID}"
+        sh "kubectl apply -f deployment.yaml"
       }
     }
     stage ("Clean workspaces") {

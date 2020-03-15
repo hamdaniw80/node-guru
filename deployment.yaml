@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-guru
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30001
+  selector:
+    app: node-guru
+  type: NodePort
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: node-guru
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-guru
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: node-guru
+    spec:
+      containers:
+      - image: 192.168.56.101:5000/node-guru:latest
+        name: node-guru
+        ports:
+        - containerPort: 3306
+          name: mysql-transkrip
